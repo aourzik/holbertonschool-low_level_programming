@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <bits/libc-header-start.h>
-
 /**
  * main - Point d'entrée du programme
  * Return: Always 0 (Success)
