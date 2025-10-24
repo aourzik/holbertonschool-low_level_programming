@@ -11,12 +11,10 @@ int _abs(int r)
 {
 	if (r < 0)
 	{
-		printf("%d\r", r);
 		return (-r);
 	}
 	else
 	{
-		printf("%d\r", r);
 		return (r);
 	}
 }
