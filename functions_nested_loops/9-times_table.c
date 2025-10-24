@@ -16,11 +16,7 @@ void times_table(void)
 		{
 			result = l * c;
 
-			if (c == 0)
-			{
-				_putchar(result + '0');
-			}
-			else
+			if (c != 0)
 			{
 				_putchar(',');
 				_putchar(' ');
@@ -29,12 +25,12 @@ void times_table(void)
 			{
 				_putchar(' ');
 			}
-			else
-			{
-				_putchar((result / 10) + '0');
-			}
-			_putchar((result % 10) + '0');
+		else
+		{
+			_putchar((result / 10) + '0');
 		}
-		_putchar('\n');
+		_putchar((result % 10) + '0');
+		}
+	_putchar('\n');
 	}
 }
