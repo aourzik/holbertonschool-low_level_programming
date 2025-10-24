@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -16,21 +16,24 @@ void times_table(void)
 		{
 			result = l * c;
 
-			if (c != 0)
+			if (c == 0)
+			{
+				_putchar(result + '0');
+			}
+			else
 			{
 				_putchar(',');
 				_putchar(' ');
+
+				if (result < 10)
+					_putchar(' ');
+
+				if (result >= 10)
+					_putchar((result / 10) + '0');
+
+				_putchar((result % 10) + '0');
 			}
-			if (result < 10)
-			{
-				_putchar(' ');
-			}
-		else
-		{
-			_putchar((result / 10) + '0');
 		}
-		_putchar((result % 10) + '0');
-		}
-	_putchar('\n');
+		_putchar('\n');
 	}
 }
