@@ -14,8 +14,14 @@
 void puts2(char *str)
 {
 	int i;
+	int size = 0;
 
-	for (i = 0; str[i] != '\0' && i < 224; i += 2)
+	while (str[size] != '\0')
+	{
+		size++;
+	}
+
+	for (i = 0; str[i] != '\0' && i < size; i += 2)
 	{
 		_putchar(str[i]);
 	}
