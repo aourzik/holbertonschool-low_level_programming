@@ -11,23 +11,25 @@ char *cap_string(char *str)
 {
 	int i = 0;
 	int j;
-	char tab[] = " \t\n,;/!?\"(){}";
-
-	if (str[0] >= 'a' && str[0] <= 'z')
-	{
-		str[0] -= 32;
-	}
+	char tab[] = " \t\n,.;/!?\"(){}";
 
 	while (str[i] != '\0')
 	{
-		for (j = 0; tab[j] != '\0'; j++)
+		if (i == 0 && str[i] >= 'a' && str[i] <= 'z')
 		{
-			if (str[i] == tab[j] && (str[i + 1] >= 'a' && str[i + 1] <= 'z'))
+			str[i] -= 32;
+		}
+		else
+		{
+			for (j = 0; tab[j] != '\0'; j++)
 			{
-				str[i + 1] -= 32;
+				if (str[i - 1] == tab[j] && (str[i] >= 'a' && str[i] <= 'z'))
+				{
+					str[i] -= 32;
+				}
 			}
 		}
 		i++;
 	}
-	return (0);
+	return (str);
 }
