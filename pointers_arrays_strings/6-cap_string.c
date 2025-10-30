@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 /**
- * cap_string - Met en majuscule la première lettre de chaque mot d'une chaîne.
+ * cap_string - Met en majuscule la première lettre
+ * de chaque mot d'une chaîne.
  * @str: Pointeur vers la chaîne de caractères à modifier.
  *
  * Return: Pointeur vers la chaîne modifiée.
