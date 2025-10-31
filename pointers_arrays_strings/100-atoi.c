@@ -34,7 +34,7 @@ int _atoi(char *s)
 		{
 			return (INT_MAX);
 		}
-		if (-nb < (INT_MIN + value) / 10)
+		if (nb < (INT_MIN + value) / 10)
 		{
 			return (INT_MIN);
 		}
