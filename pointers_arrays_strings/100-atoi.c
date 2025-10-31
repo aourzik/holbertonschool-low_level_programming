@@ -30,25 +30,23 @@ int _atoi(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		value = s[i] - '0';
-		if (sign == 1 && nb > (INT_MAX - value) / 10)
+		if (sign == 1)
 		{
-			return (INT_MAX);
+			if (nb > INT_MAX / 10 || (nb == INT_MAX / 10 && value > INT_MAX % 10))
+			{
+				return (INT_MAX);
+			}
+			nb = nb * 10 + value;
 		}
-		if (-nb < (INT_MIN + value) / 10)
+		else
 		{
-			return (INT_MIN);
+			if (nb < INT_MIN / 10 || (nb == INT_MIN / 10 && -value < INT_MIN % 10))
+			{
+				return (INT_MIN);
+			}
+			nb = nb * 10 - value;
 		}
-		nb = nb * 10;
-		nb = nb + value;
 		i++;
-	}
-	if (sign == -1)
-	{
-		if (nb == INT_MIN)
-		{
-			return (INT_MIN);
-		}
-		return (-nb);
 	}
 	return (nb);
 }
