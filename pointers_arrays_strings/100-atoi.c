@@ -34,12 +34,20 @@ int _atoi(char *s)
 		{
 			return (INT_MAX);
 		}
-		if (sign == -1 && nb < (INT_MIN + value) / 10)
+		if (-nb < (INT_MIN + value) / 10)
 		{
 			return (INT_MIN);
 		}
 		nb = nb * 10 + value;
 		i++;
 	}
-	return (nb * sign);
+	if (sign == -1)
+	{
+		if (nb == INT_MIN)
+		{
+			return (INT_MIN);
+		}
+		return (-nb);
+	}
+	return (nb);
 }
