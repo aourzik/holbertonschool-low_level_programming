@@ -7,7 +7,8 @@
  *@accept: ensemble de caractères à rechercher
  *
  *Description: Parcourt la chaîne s et renvoie un pointeur vers le premier
- *caractère de s qui correspond à l’un des caractères présents dans accept.
+ *caractère de s qui correspond à l’un des caractères présents
+ *dans accept.
  *Si aucun caractère n’est trouvé, la fonction renvoie NULL.
  *
  *Return: pointeur vers le caractère correspondant dans s, ou NULL si absent
