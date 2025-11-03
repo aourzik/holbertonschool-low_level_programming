@@ -34,8 +34,9 @@ unsigned int _strspn(char *s, char *accept)
 		}
 		if (count == 0)
 		{
-			number++;
+			break;
 		}
+		number++;
 	}
 	return (number);
 }
