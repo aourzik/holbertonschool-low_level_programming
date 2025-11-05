@@ -11,7 +11,8 @@
  * Description:
  * If no number is passed, prints 0 followed by a new line.
  * If any argument contains non-digit characters, prints "Error" and returns 1.
- * Otherwise, sums all positive numbers and prints the result followed by a new line.
+ * Otherwise, sums all positive numbers and prints the result followed
+ * by a new line.
  *
  * Return: 0 on success, 1 on error
  */
