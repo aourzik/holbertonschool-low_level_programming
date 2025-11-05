@@ -3,7 +3,7 @@
 /**
  * prime - checks recursively if a number is prime
  * @n: the number to check
- * @i: the current divisor being tested
+ * @x: the current divisor being tested
  *
  * Return: 1 if n is prime, 0 otherwise
  */
