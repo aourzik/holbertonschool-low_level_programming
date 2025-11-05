@@ -17,7 +17,7 @@ int _sqr_var(int n, int x)
 	{
 		return (x);
 	}
-	return _sqr_var(n, x + 1);
+	return (_sqr_var(n, x + 1));
 }
 
 /**
