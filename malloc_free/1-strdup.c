@@ -18,6 +18,7 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
+	/*calculer la longueur de la string*/
 	for (size = 0; str[size] != '\0'; size++)
 		;
 
