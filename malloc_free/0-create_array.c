@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 /**
- * create_array - Crée un tableau de caractères et l'initialise avec un caractère spécifique
+ * create_array - Crée un tableau de caractères et
+ * l'initialise avec un caractère spécifique
  * @size: la taille du tableau à créer
  * @c: le caractère utilisé pour initialiser le tableau
  *
