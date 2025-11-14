@@ -1,12 +1,18 @@
 #include "dog.h"
 #include <stdlib.h>
 
-/* Fonction auxiliaire pour copier une chaîne */
+/**
+ * new_dog - Crée un nouveau chien
+ * @name: nom du chien
+ * @age: âge du chien
+ * @owner: propriétaire du chien
+ *
+ * Return: pointeur vers le nouveau dog_t, ou NULL si échec
+ */
 char *copy_string(char *str)
 {
 	char *copy;
 	int i;
-
 	if (str == NULL)
 		return NULL;
 
@@ -20,23 +26,12 @@ char *copy_string(char *str)
 	copy[i] = '\0';
 	return copy;
 }
-
-/**
- * new_dog - Crée un nouveau chien
- * @name: nom du chien
- * @age: âge du chien
- * @owner: propriétaire du chien
- *
- * Return: pointeur vers le nouveau dog_t, ou NULL si échec
- */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new;
-
 	new = malloc(sizeof(dog_t));
 	if (new == NULL)
 		return NULL;
-
 	new->name = copy_string(name);
 	new->owner = copy_string(owner);
 	if ((name && !new->name) || (owner && !new->owner))
@@ -46,7 +41,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(new);
 		return NULL;
 	}
-
 	new->age = age;
 	return new;
 }
