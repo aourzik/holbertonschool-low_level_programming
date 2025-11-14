@@ -1,5 +1,6 @@
 #include "dog.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * new_dog - Crée un nouveau chien
@@ -9,38 +10,24 @@
  *
  * Return: pointeur vers le nouveau dog_t, ou NULL si échec
  */
-char *copy_string(char *str)
-{
-	char *copy;
-	int i;
-	if (str == NULL)
-		return NULL;
-
-	for (i = 0; str[i] != '\0'; i++)
-		;
-	copy = malloc(i + 1);
-	if (copy == NULL)
-		return NULL;
-	for (i = 0; str[i] != '\0'; i++)
-		copy[i] = str[i];
-	copy[i] = '\0';
-	return copy;
-}
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new;
-	new = malloc(sizeof(dog_t));
-	if (new == NULL)
+	dog_t *d;
+
+	d = malloc(sizeof(dog_t));
+	if (!d)
 		return NULL;
-	new->name = copy_string(name);
-	new->owner = copy_string(owner);
-	if ((name && !new->name) || (owner && !new->owner))
+
+	d->name = name ? strdup(name) : NULL;
+	d->owner = owner ? strdup(owner) : NULL;
+	if ((name && !d->name) || (owner && !d->owner))
 	{
-		free(new->name);
-		free(new->owner);
-		free(new);
+		free(d->name);
+		free(d->owner);
+		free(d);
 		return NULL;
 	}
-	new->age = age;
-	return new;
+
+	d->age = age;
+	return d;
 }
