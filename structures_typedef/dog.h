@@ -1,6 +1,6 @@
 #ifndef DOG_H
 #define DOG_H
-
+#include <stdlib.h>
 /**
  * struct dog - structure représentant un chien
  * @name: nom du chien
@@ -22,7 +22,7 @@ void init_dog(struct dog *d, char *name, float age, char *owner);
 void print_dog(struct dog *d);
 /*Prototype du nouveau nom pour la structure struct dog*/
 typedef struct dog dog_t;
-
+/*Prototype de la fonction new_dog*/
 dog_t *new_dog(char *name, float age, char *owner);
 
 #endif
