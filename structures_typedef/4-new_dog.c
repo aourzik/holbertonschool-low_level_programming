@@ -1,6 +1,26 @@
 #include "dog.h"
 #include <stdlib.h>
 
+/* Fonction auxiliaire pour copier une chaîne */
+char *copy_string(char *str)
+{
+	char *copy;
+	int i;
+
+	if (str == NULL)
+		return NULL;
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+	copy = malloc(i + 1);
+	if (copy == NULL)
+		return NULL;
+	for (i = 0; str[i] != '\0'; i++)
+		copy[i] = str[i];
+	copy[i] = '\0';
+	return copy;
+}
+
 /**
  * new_dog - Crée un nouveau chien
  * @name: nom du chien
@@ -12,48 +32,21 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new;
-	int i;
 
 	new = malloc(sizeof(dog_t));
 	if (new == NULL)
-		return (NULL);
+		return NULL;
 
-	if (name != NULL)
+	new->name = copy_string(name);
+	new->owner = copy_string(owner);
+	if ((name && !new->name) || (owner && !new->owner))
 	{
-		for (i = 0; name[i] != '\0'; i++)
-			;
-		new->name = malloc(i + 1);
-		if (new->name == NULL)
-		{
-			free(new);
-			return (NULL);
-		}
-		for (i = 0; name[i] != '\0'; i++)
-			new->name[i] = name[i];
-		new->name[i] = '\0';
+		free(new->name);
+		free(new->owner);
+		free(new);
+		return NULL;
 	}
-	else
-		new->name = (NULL);
-
-	if (owner != NULL)
-	{
-		for (i = 0; owner[i] != '\0'; i++)
-			;
-		new->owner = malloc(i + 1);
-		if (new->owner == NULL)
-		{
-			free(new->name);
-			free(new);
-			return (NULL);
-		}
-		for (i = 0; owner[i] != '\0'; i++)
-			new->owner[i] = owner[i];
-		new->owner[i] = '\0';
-	}
-	else
-		new->owner = (NULL);
 
 	new->age = age;
-
-	return (new);
+	return new;
 }
