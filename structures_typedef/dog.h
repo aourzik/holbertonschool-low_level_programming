@@ -20,5 +20,7 @@ struct dog
 void init_dog(struct dog *d, char *name, float age, char *owner);
 /*Prototype de la fonction print_dog*/
 void print_dog(struct dog *d);
+/*Prototype du nouveau nom pour la structure struct dog*/
+typedef struct dog dog_t;
 
 #endif
