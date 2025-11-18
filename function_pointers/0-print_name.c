@@ -35,7 +35,7 @@ void print(char *name)
 
 	if (name == NULL)
 	{
-		(return);
+		return;
 	}
 
 	while (name[i] != '\0')
