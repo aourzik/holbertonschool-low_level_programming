@@ -23,7 +23,7 @@ void print_name(char *name, void (*f)(char *))
  */
 int _putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 /**
  * my_print - affiche le nom caractère par caractère avec putchar
@@ -35,7 +35,7 @@ void print(char *name)
 
 	if (name == NULL)
 	{
-		return ();
+		return;
 	}
 
 	while (name[i] != '\0')
