@@ -26,7 +26,8 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 /**
- * my_print - affiche le nom caractère par caractère suivi d'un retour à la ligne
+ * my_print - affiche le nom caractère par caractère suivi
+ * d'un retour à la ligne
  * @name: nom à afficher
  */
 void print(char *name)
