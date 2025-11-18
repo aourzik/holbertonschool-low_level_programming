@@ -19,14 +19,14 @@ void print_name(char *name, void (*f)(char *))
  * _putchar - écrit le caractère c sur la sortie standard
  * @c: caractère à afficher
  *
- * Retourne 1 en cas de succès, sinon -1
+ * Return 1 en cas de succès, sinon -1
  */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 /**
- * my_print - affiche le nom caractère par caractère avec putchar
+ * my_print - affiche le nom caractère par caractère suivi d'un retour à la ligne
  * @name: nom à afficher
  */
 void print(char *name)
