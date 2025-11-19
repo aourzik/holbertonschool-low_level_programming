@@ -20,7 +20,7 @@ void print_name(char *name, void (*f)(char *))
  * _putchar - écrit le caractère c sur la sortie standard
  * @c: caractère à afficher
  *
- * Retourne 1 en cas de succès, sinon -1
+ * Return: 1 en cas de succès, -1 sinon
  */
 int _putchar(char c)
 {
@@ -28,12 +28,10 @@ int _putchar(char c)
 }
 
 /**
- * print - fonction d'affichage d'une chaîne de
- * caractère avec _putchar
- * @str: chaîne de caractère à afficher
+ * print - affiche une chaîne de caractères avec _putchar
+ * @str: chaîne à afficher
  *
- * Description: Affiche chaque caractère de la chaîne
- * suivi d'un retour à la ligne.
+ * Return: rien
  */
 void print(char *str)
 {
