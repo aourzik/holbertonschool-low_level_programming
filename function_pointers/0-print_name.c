@@ -24,7 +24,7 @@ void print_name(char *name, void (*f)(char *))
  */
 int _putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 /**
