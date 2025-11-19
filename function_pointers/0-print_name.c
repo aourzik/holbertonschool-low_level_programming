@@ -15,33 +15,38 @@ void print_name(char *name, void (*f)(char *))
 		f(name);
 	}
 }
+
 /**
  * _putchar - écrit le caractère c sur la sortie standard
  * @c: caractère à afficher
  *
- * Return 1 en cas de succès, sinon -1
+ * Retourne 1 en cas de succès, sinon -1
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return write(1, &c, 1);
 }
+
 /**
- * my_print - affiche le nom caractère par caractère suivi
- * d'un retour à la ligne
- * @name: nom à afficher
+ * print - fonction d'affichage d'une chaîne de
+ * caractère avec _putchar
+ * @str: chaîne de caractère à afficher
+ *
+ * Description: Affiche chaque caractère de la chaîne
+ * suivi d'un retour à la ligne.
  */
-void print(char *name)
+void print(char *str)
 {
 	int i = 0;
 
-	if (name == NULL)
+	if (str == NULL)
 	{
 		return;
 	}
 
-	while (name[i] != '\0')
+	while (str[i] != '\0')
 	{
-		_putchar(name[i]);
+		_putchar(str[i]);
 		i++;
 	}
 	_putchar('\n');
