@@ -1,7 +1,12 @@
 #include "calc.h"
-#include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * get_op_func - sélectionne la bonne fonction selon l'opérateur
+ * @s: opérateur passé en argument
+ *
+ * Return: un pointeur vers la fonction correspondante, ou NULL
+ */
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
@@ -11,18 +16,15 @@ int (*get_op_func(char *s))(int, int)
 		{"/", op_div},
 		{"%", op_mod},
 		{NULL, NULL}};
-	int i;
+	int i = 0;
 
-	if (s == NULL)
+	while (ops[i].op != NULL)
 	{
-		printf("Error\n");
-		exit(98);
+		if (*ops[i].op == *s && s[1] == '\0')
+		{
+			return (ops[i].f);
+		}
+		i++;
 	}
-
-	if (s != "+" || s != "-" || s != "*" || s != "/" || s != "%")
-	{
-		printf("Error\n");
-		exit(99);
-		return (NULL);
-	}
+	return (NULL);
 }
