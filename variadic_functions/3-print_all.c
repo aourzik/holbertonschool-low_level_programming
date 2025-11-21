@@ -2,16 +2,28 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+/* --- UTILITIES --- */
+
+/**
+ * _putchar - écrit le caractère c sur la sortie standard
+ * @c: caractère à afficher
+ *
+ * Retourne 1 en cas de succès, sinon -1
+ */
 int _putchar(char c)
 {
 	return write(1, &c, 1);
 }
-
+/**
+ * print_char - prints a single char
+ */
 void print_char(char c)
 {
 	_putchar(c);
 }
-
+/**
+ * print_str - prints a string
+ */
 void print_str(char *s)
 {
 	int i = 0;
@@ -27,7 +39,9 @@ void print_str(char *s)
 		i++;
 	}
 }
-
+/**
+ * print_int - prints an integer using _putchar
+ */
 void print_int(int n)
 {
 	unsigned int num;
@@ -48,7 +62,9 @@ void print_int(int n)
 	}
 	_putchar((num % 10) + '0');
 }
-
+/**
+ * print_float - prints a float using _putchar (6 decimals)
+ */
 void print_float(double f)
 {
 	long int int_part = (long int)f;
@@ -75,7 +91,14 @@ void print_float(double f)
 		_putchar(((int)frac % 10) + '0');
 	}
 }
+/* --- MAIN FUNCTION --- */
 
+/**
+ * print_all - prints anything (char, int, float, string)
+ * @format: type list
+ *
+ * Return: nothing
+ */
 void print_all(const char *const format, ...)
 {
 	va_list args;
