@@ -9,7 +9,7 @@
  */
 size_t print_list(const list_t *h)
 {
-	site_t count = 0;
+	size_t count = 0;
 
 	while (h != NULL)
 	{
@@ -22,7 +22,7 @@ size_t print_list(const list_t *h)
 			printf("[%u] %s\n", h->len, h->str);
 		}
 
-		h c = h->next;
+		h = h->next;
 		count++;
 	}
 

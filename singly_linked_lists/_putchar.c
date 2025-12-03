@@ -1,8 +1,8 @@
 #include <unistd.h>
-#include "main.h"
+#include "lists.h"
 
 /**
- * main - Point d'entrée du programme
+ * lists - Point d'entrée du programme
  * Return: Always 0 (Success)
  */
 int _putchar(char c)
