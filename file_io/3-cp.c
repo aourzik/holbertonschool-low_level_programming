@@ -7,8 +7,8 @@
 #define BUFFER_SIZE 1024
 
 /**
- * close_fd - closes a file descriptor and handles errors
- * @fd: file descriptor to close
+ * close_fd - closes a file descriptor
+ * @fd: file descriptor
  */
 void close_fd(int fd)
 {
@@ -20,54 +20,65 @@ void close_fd(int fd)
 }
 
 /**
- * copy_file - Copies content from one file to another.
- * @file_from: The name of the source file.
- * @file_to: The name of the destination file.
- *
- * Description: Opens @file_from for reading and @file_to for writing.
- * It reads 1024 bytes at a time and writes them to @file_to.
- * If any error occurs (opening, reading, writing), the function
- * prints the appropriate error message to the POSIX standard error
- * and exits with the required exit code (98 or 99).
+ * write_buffer - writes a buffer to a file
+ * @fd_to: destination file descriptor
+ * @buffer: buffer to write
+ * @r: number of bytes read
  */
-void copy_file(const char *file_from, const char *file_to)
+void write_buffer(int fd_to, char *buffer, ssize_t r)
 {
-	int fd_from, fd_to;
-	ssize_t r, w;
-	char buffer[1024];
+	ssize_t w = write(fd_to, buffer, r);
 
-	fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1)
+	if (w == -1 || w != r)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", "file_to");
+		exit(99);
+	}
+}
+
+/**
+ * open_files - opens the source and destination files
+ * @from: source file
+ * @to: destination file
+ * @fd_from: pointer to source fd
+ * @fd_to: pointer to destination fd
+ */
+void open_files(const char *from, const char *to, int *fd_from, int *fd_to)
+{
+	*fd_from = open(from, O_RDONLY);
+	if (*fd_from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from);
 		exit(98);
 	}
 
-	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd_to == -1)
+	*fd_to = open(to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (*fd_to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		close_fd(fd_from);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", to);
 		exit(99);
 	}
+}
 
-	while ((r = read(fd_from, buffer, 1024)) > 0)
-	{
-		w = write(fd_to, buffer, r);
-		if (w != r)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			close_fd(fd_from);
-			close_fd(fd_to);
-			exit(99);
-		}
-	}
+/**
+ * copy_file - copies content from one file to another
+ * @from: source file
+ * @to: destination file
+ */
+void copy_file(const char *from, const char *to)
+{
+	int fd_from, fd_to;
+	ssize_t r;
+	char buffer[BUFFER_SIZE];
+
+	open_files(from, to, &fd_from, &fd_to);
+
+	while ((r = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+		write_buffer(fd_to, buffer, r);
 
 	if (r == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		close_fd(fd_from);
-		close_fd(fd_to);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from);
 		exit(98);
 	}
 
@@ -76,24 +87,20 @@ void copy_file(const char *file_from, const char *file_to)
 }
 
 /**
- * main - Entry point of the cp program.
- * @argc: Number of arguments passed.
- * @argv: Array of pointers to the arguments.
+ * main - entry point
+ * @ac: argument count
+ * @av: argument vector
  *
- * Description: Checks argument count and calls copy_file().
- * If the argument count is incorrect, prints usage error
- * and exits with code 97.
- *
- * Return: Always 0 on success.
+ * Return: 0 on success
  */
-int main(int argc, char *argv[])
+int main(int ac, char **av)
 {
-	if (argc != 3)
+	if (ac != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
-	copy_file(argv[1], argv[2]);
+	copy_file(av[1], av[2]);
 	return (0);
 }
